@@ -31,4 +31,5 @@ public class Topic {
     public void addComment(Comment comment){
         comments.add(comment);
     }
+    public List<Comment> getComments(){return comments;}
 }

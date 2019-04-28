@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.PersonService;
+import domain.TopicService;
 
 
 @WebServlet("/Controller")
@@ -19,6 +20,7 @@ public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private PersonService model = new PersonService();
+	private TopicService topicService = new TopicService();
 	private ControllerFactory controllerFactory = new ControllerFactory();
 
 	public Controller() {
@@ -42,7 +44,7 @@ public class Controller extends HttpServlet {
 		if (action != null) {
 			RequestHandler handler;
 			try {
-				handler = controllerFactory.getController(action, model);
+				handler = controllerFactory.getController(action, model,topicService );
 				destination = handler.handleRequest(request, response);
 			} catch (NotAuthorizedException exc) {
 				List<String> errors = new ArrayList<String>();

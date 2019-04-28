@@ -48,7 +48,56 @@
 </c:choose>
 		<!--************************************************************************-->
 		<h1>Blog</h1>
-		<div id="blog"></div>
+		<div id="blogDiv"></div>
+		<div>
+			<p>Name:</p>
+			<input type="text" id="authorinput"/>
+			<p>comment:</p>
+			<input type="text" id="messageinput"/>
+			<p>rating:</p>
+			<input type="text" id="ratinginput"/>
+			<p>commentnr:</p>
+			<input type="text" id="commentnrinput"/>
+		</div>
+		<div>
+			<button type="button" onclick="openSocket();" >Open</button>
+			<button type="button" onclick="send();" >Send</button>
+		</div>
+		<div id="messages"></div>
+
+		<script type="text/javascript">
+			var webSocket;
+			var messages = document.getElementById("messages");
+			function openSocket(){
+				webSocket = new WebSocket("ws://localhost:8080/echo");
+
+				webSocket.onopen = function(event){
+					writeResponse("Connection opened")
+				};
+
+				webSocket.onmessage = function(event){
+					writeResponse(event.data);
+				};
+
+				webSocket.onclose = function(event){
+					writeResponse("Connection closed");
+				};
+			}
+
+			function send(){
+				var text = document.getElementById("authorinput").value + ": " + document.getElementById("messageinput").value + ": " + document.getElementById("ratinginput") + ": " + document.getElementById("commentnrinput");
+				webSocket.send(text);
+			}
+
+			function closeSocket(){
+				webSocket.close();
+			}
+
+			function writeResponse(text){
+				messages.innerHTML += "<br/>" + text;
+			}
+		</script>
+		<script src="js/blog.js"></script>
 
 
 		<!--************************************************************************-->

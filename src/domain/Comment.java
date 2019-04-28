@@ -9,5 +9,12 @@ public class Comment {
         this.comment = comment;
         this.rating = rating;
     }
+    public Person getAuthor(){
+        return author;
+    }
+    public String getComment(){
+        return comment;
+    }
+    public int getRating(){return rating;}
 
 }

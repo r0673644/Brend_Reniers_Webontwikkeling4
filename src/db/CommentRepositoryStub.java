@@ -61,6 +61,11 @@ public class CommentRepositoryStub  implements CommentRepository {
         ytttv.addComment(yt2);
         ytttv.addComment(yt3);
 
+        add(music);
+        add(movie);
+        add(sports);
+        add(games);
+        add(ytttv);
     }
     @Override
     public void add(Topic topic){
@@ -80,6 +85,6 @@ public class CommentRepositoryStub  implements CommentRepository {
 
     @Override
     public List<Topic> getAll() {
-            return new ArrayList<Topic>(topics.values());
+            return new ArrayList<>(topics.values());
     }
 }

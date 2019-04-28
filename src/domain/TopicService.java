@@ -12,15 +12,15 @@ public class TopicService implements Service {
         }
 
         public Topic getTopic(String description)  {
-            return getCommentRepository().getTopic(description);
+            return commentRepository.getTopic(description);
         }
 
         public List<Topic> getAll() {
-            return getCommentRepository().getAll();
+            return commentRepository.getAll();
         }
     @Override
     public void add(Object topic) {
-            getCommentRepository().add((Topic)topic);
+            commentRepository.add((Topic)topic);
         }
 
         @Override
@@ -28,7 +28,5 @@ public class TopicService implements Service {
            //getCommentRepository().delete(description);
         }
 
-        private CommentRepository getCommentRepository() {
-            return commentRepository;
-        }
+
 }
