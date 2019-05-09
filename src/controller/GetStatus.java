@@ -12,7 +12,6 @@ public class GetStatus extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Person person = (Person) request.getSession().getAttribute("user");
         String status = person.getStatus();
-        System.out.println(status + " / in getstatus");
         String statusJSON = this.toJSON(status);
         response.setContentType("text/json");
         try {

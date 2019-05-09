@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 public class CommentRepositoryStub  implements CommentRepository {
-    private Map<String, Topic> topics = new HashMap<String, Topic>();
+    private Map<Integer, Topic> topics = new HashMap<Integer, Topic>();
     public CommentRepositoryStub(){
-        Topic music = new Topic("Music","How do you guys like the new Marshmello song?");
-        Topic movie = new Topic("Movie","What would you guys rate avengers endgame?");
-        Topic sports = new Topic("Sports","Soccer is overrated.");
-        Topic games = new Topic("Games","Anybody else realy dislikes fnbr update 8.20?");
-        Topic ytttv = new Topic("Youtube and twitch","Dk is the best streamer, change my mind.");
+        Topic music = new Topic(1,"Music","How do you guys like the new Marshmello song?");
+        Topic movie = new Topic(2,"Movie","What would you guys rate avengers endgame?");
+        Topic sports = new Topic(3,"Sports","Soccer is overrated.");
+        Topic games = new Topic(4,"Games","Anybody else realy dislikes fnbr update 8.20?");
+        Topic ytttv = new Topic(5,"Youtube and twitch","Dk is the best streamer, change my mind.");
 
         Person jan = new Person("jan@ucll.be", "t", "Jan", "Janssens", Role.LID);
         Person an = new Person("an@ucll.be", "t", "An", "Cornelissen", Role.LID);
@@ -75,7 +75,7 @@ public class CommentRepositoryStub  implements CommentRepository {
         if (topics.containsKey(topic.getDescription())) {
             throw new IllegalArgumentException("This topic already exists.");
         }
-        topics.put(topic.getDescription(),topic);
+        topics.put(topic.getId(),topic);
     }
 
     @Override
@@ -86,5 +86,15 @@ public class CommentRepositoryStub  implements CommentRepository {
     @Override
     public List<Topic> getAll() {
             return new ArrayList<>(topics.values());
+    }
+    @Override
+    public void addComment(int ID, Comment comment){
+        topics.get(ID).addComment(comment);
+    }
+
+    public Comment getLastCommentById(int id){
+        List comments = topics.get(id).getComments();
+        Comment last = (Comment)comments.get(comments.size()-1);
+        return last;
     }
 }

@@ -16,24 +16,15 @@ public class BlogServer {
 
     @OnOpen
     public void onOpen(Session session){
-        System.out.println(session.getId() + " has opened a connection to place a comment.");
-        /*sendMessageToAll("User " + session.getId() + " has connected");
-        try {
-            session.getBasicRemote().sendText("Connection Established");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }*/
         sessions.add(session);
     }
     @OnMessage
     public void onMessage(String message, Session session){
-        System.out.println("Message from " + session.getId() + ": " + message);
         sendMessageToAll(message);
     }
 
     @OnClose
     public void onClose(Session session){
-        System.out.println("Chat " +session.getId()+" has ended");
         sessions.remove(session);
     }
 

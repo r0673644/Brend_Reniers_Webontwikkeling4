@@ -56,47 +56,14 @@
 			<input type="text" id="messageinput"/>
 			<p>rating:</p>
 			<input type="text" id="ratinginput"/>
-			<p>commentnr:</p>
-			<input type="text" id="commentnrinput"/>
+			<p>topicnr:</p>
+			<input type="text" id="topicnrinput"/>
 		</div>
 		<div>
-			<button type="button" onclick="openSocket();" >Open</button>
-			<button type="button" onclick="send();" >Send</button>
+			<button type="button" onclick="addComment();" >Send</button>
 		</div>
 		<div id="messages"></div>
 
-		<script type="text/javascript">
-			var webSocket;
-			var messages = document.getElementById("messages");
-			function openSocket(){
-				webSocket = new WebSocket("ws://localhost:8080/echo");
-
-				webSocket.onopen = function(event){
-					writeResponse("Connection opened")
-				};
-
-				webSocket.onmessage = function(event){
-					writeResponse(event.data);
-				};
-
-				webSocket.onclose = function(event){
-					writeResponse("Connection closed");
-				};
-			}
-
-			function send(){
-				var text = document.getElementById("authorinput").value + ": " + document.getElementById("messageinput").value + ": " + document.getElementById("ratinginput") + ": " + document.getElementById("commentnrinput");
-				webSocket.send(text);
-			}
-
-			function closeSocket(){
-				webSocket.close();
-			}
-
-			function writeResponse(text){
-				messages.innerHTML += "<br/>" + text;
-			}
-		</script>
 		<script src="js/blog.js"></script>
 
 

@@ -38,7 +38,11 @@ public class PersonRepositoryStub implements PersonRepository {
 		if(personId == null){
 			throw new IllegalArgumentException("No id given");
 		}
-		return persons.get(personId);
+		Person temp = persons.get(personId);
+		if(temp!=null){
+			return temp;
+		}
+		throw new IllegalArgumentException("ID not found!" + personId);
 	}
 	
 	public List<Person> getAll(){

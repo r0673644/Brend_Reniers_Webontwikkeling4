@@ -3,12 +3,17 @@ package domain;
 import db.CommentRepository;
 import db.CommentRepositoryStub;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TopicService implements Service {
         private CommentRepository commentRepository = new CommentRepositoryStub();
 
         public TopicService(){
+        }
+
+        public Comment getLastCommentById(int id){
+            return commentRepository.getLastCommentById(id);
         }
 
         public Topic getTopic(String description)  {
@@ -29,4 +34,8 @@ public class TopicService implements Service {
         }
 
 
+    public void addComment(int topicID, Comment comment) {
+            commentRepository.addComment(topicID,comment);
+
+    }
 }

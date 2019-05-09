@@ -13,9 +13,8 @@ import java.util.List;
 public class GetBlog extends RequestHandler {
 
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         List <Topic> topics =  getTopicService().getAll();
-        System.out.println(topics.size() +" " + getTopicService() );
         response.setContentType("text/json");
         try {
             String topicsJson = this.blogtoJSON(topics);

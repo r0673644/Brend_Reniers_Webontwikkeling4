@@ -12,7 +12,6 @@ public class AddFriend extends RequestHandler {
         Person person=(Person) request.getSession().getAttribute("user");
         String friendId =request.getParameter("friendId");
         Person friend = getPersonService().getPerson(friendId+"@ucll.be");
-        System.out.println(friend + " " + person + " "+ friendId + "/ in AddFriend");
 
         boolean reedstoegevoegd=false;
 

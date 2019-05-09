@@ -7,18 +7,6 @@ function getFriends() {
     xhr3.send(null);
 }
 
-function addFriend888(){
-    var friendId = document.getElementById("addFriend").value;
-    console.log(friendId)
-    var information = "friendId=" + encodeURIComponent(friendId);
-    console.log(information)
-    xhr3.open("POST", "Controller?action=AddFriend", true);
-    //xhr3.onreadystatechange = getFriendsData;
-    xhr3.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr3.send(information);
-    console.log(xhr3)
-    getFriends();
-}
 function addFriend(){
     var friends = document.getElementById("addFriend").value;
     var information= "friendId=" + encodeURIComponent(friends);
@@ -26,7 +14,6 @@ function addFriend(){
     xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr2.send(information);
     getFriends();
-
 }
 
 function getFriendsData() {
