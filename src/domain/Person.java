@@ -1,5 +1,7 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -20,6 +22,7 @@ public class Person {
 	private Role role;
 
 	private String status;
+	@JsonIgnore
 	private List<Person> friends = new ArrayList<>();
 
 	public Person(String userId, String password, String firstName,
